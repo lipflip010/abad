@@ -15,8 +15,13 @@ def index():
 
 
 @app.route('/time')
-def time():
+def system_time():
     return run(['date', '+%T'])
+
+
+@app.route('/ls')
+def ls():
+    return run(['ls', '-l'])
 
 
 @app.route('/cakes')
