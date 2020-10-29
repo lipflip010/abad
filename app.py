@@ -6,23 +6,21 @@ app = Flask(__name__)
 
 
 def run(command):
-    return sp.check_output(command,cwd=os.getcwd())
+    output = sp.run(command,cwd=os.getcwd(),stdout=sp.PIPE)
+    return output.stdout.decode('UTF-8')
 
 
 @app.route('/')
 def index():
-    st = run(['date', '+%T'])
-    return render_template('index.html',system_time=st)
+    system_time = run(['date', '+%T'])
+    return render_template('index.html',system_time=system_time)
 
 
-@app.route('/time')
-def system_time():
-    return
 
-
-@app.route('/ls')
-def ls():
-    return run(['ls', '-l'])
+@app.route('/storage')
+def storage():
+    ls = run(['du', '-hcs /home/philipp/Cloud'])
+    return render_template('storage.html', ls=ls)
 
 
 @app.route('/cakes')

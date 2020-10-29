@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>abad</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-      <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-  </head>
-  <body>
-  <section class="section">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</head>
+<body>
+<section class="section">
     <div class="container">
-      <h1 class="title">
-        Hello Philipp
-      </h1>
-      <p class="subtitle">
-        It is currently {{ system_time }}
-      </p>
+        <h1 class="title">
+            Hello Philipp
+        </h1>
+        <p class="subtitle">
+            It is currently {{ system_time }}
+        </p>
     </div>
-  </section>
-  </body>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="title">Overview </h2>
+        <a href="/" class="button is-link">Home</a>
+        <a class="button is-link">Temperature</a>
+        <a href="/storage" class="button is-link">Storage</a>
+        <a class="button is-link">Performance</a>
+        <a class="button is-link">Commands</a>
+    </div>
+</section>
+</body>
 </html>
