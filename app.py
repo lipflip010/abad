@@ -11,12 +11,13 @@ def run(command):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    st = run(['date', '+%T'])
+    return render_template('index.html',system_time=st)
 
 
 @app.route('/time')
 def system_time():
-    return run(['date', '+%T'])
+    return
 
 
 @app.route('/ls')
