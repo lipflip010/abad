@@ -1,5 +1,5 @@
 # abad
 Simple python webserver
 
-# Etymology
+### Etymology
 ‛âbad is hebrew for to serve
