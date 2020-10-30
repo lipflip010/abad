@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, redirect
 import subprocess as sp
 import os
 
@@ -20,6 +20,18 @@ def index():
 def storage():
     ls = run(['du', '-hcs /home/philipp/Cloud'])
     return render_template('storage.html', ls=ls)
+
+
+@app.route('/commands')
+def commands():
+    return render_template('commands.html')
+
+
+@app.route('/commands/chkrootkit_logs')
+def chkrootkit_logs():
+    command = ['cp', '-afv', '/var/log/chkrootkit/log.today', '/var/log/chkrootkit/log.expected']
+    stdout = run(command)
+    return render_template('command-output.html', stdout=stdout, command=command)
 
 
 @app.route('/shutdown')
