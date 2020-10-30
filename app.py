@@ -22,11 +22,6 @@ def storage():
     return render_template('storage.html', ls=ls)
 
 
-@app.route('/cakes')
-def cakes():
-    return 'Yummy cakes!'
-
-
 @app.route('/shutdown')
 def shutdown():
     run(['shutdown', 'now'])
