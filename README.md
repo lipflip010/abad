@@ -11,6 +11,9 @@ Simple python webserver
     source activate
     cd ../../../abad
     pip install -r requirements.txt
+    
+### Firewall rule
+    ufw allow from $private_network to any port 8080
 
 ### Etymology
 ‛âbad is hebrew for to serve
