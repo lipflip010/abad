@@ -22,6 +22,11 @@ def storage():
     return render_template('storage.html', ls=ls)
 
 
+@app.route('/commands')
+def commands():
+    return render_template('commands.html')
+
+
 @app.route('/shutdown')
 def shutdown():
     run(['shutdown', 'now'])
