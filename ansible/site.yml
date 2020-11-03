@@ -1,0 +1,25 @@
+---
+- name: deploy to develop
+  hosts: develop-server
+  become: yes
+
+  tasks:
+  - name: ensure python3 is present
+    apt:
+        name: python3
+        state: present
+  - name: ensure virtualenv is present
+    apt:
+        name: virtualenv
+        state: present
+  - name: cloning git repo
+    git:  
+        repo: https://github.com/lipflip010/abad.git
+        dest: /var/www/abad
+        version: prod
+        accept_hostkey: yes
+  - name: build python projects
+    pip:
+        requirements: /var/www/abad/requirements.txt
+        virtualenv: /var/www/abad/env
+        virtualenv_python: python3
