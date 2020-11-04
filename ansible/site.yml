@@ -13,7 +13,7 @@
         name: virtualenv
         state: present
   - name: cloning git repo
-    git:  
+    git:
         repo: https://github.com/lipflip010/abad.git
         dest: /var/www/abad
         force: yes
