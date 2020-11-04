@@ -15,7 +15,7 @@ def run(command):
 @app.route('/')
 def index():
     hostname = socket.gethostname()
-    system_time = strftime("%H:%M:%S") + " (" + tzname[1] + ")"
+    system_time = strftime("%H:%M:%S") + " (" + tzname[0] + ")"
     return render_template('index.html', system_time=system_time, hostname=hostname)
 
 
