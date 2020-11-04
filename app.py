@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect
 import subprocess as sp
 import os
 import socket
+from time import strftime, tzname
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def run(command):
 @app.route('/')
 def index():
     hostname = socket.gethostname()
-    system_time = run(['date', '+%T'])
+    system_time = strftime("%H:%M:%S") + " (" + tzname[1] + ")"
     return render_template('index.html', system_time=system_time, hostname=hostname)
 
 
@@ -42,4 +43,4 @@ def shutdown():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8080)
