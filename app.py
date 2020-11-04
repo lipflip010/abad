@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect
 import subprocess as sp
 import os
+import socket
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ def run(command):
 
 @app.route('/')
 def index():
-    hostname = os.uname().nodename
+    hostname = socket.gethostname()
     system_time = run(['date', '+%T'])
     return render_template('index.html', system_time=system_time, hostname=hostname)
 
