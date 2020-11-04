@@ -12,8 +12,9 @@ def run(command):
 
 @app.route('/')
 def index():
+    hostname = os.uname().nodename
     system_time = run(['date', '+%T'])
-    return render_template('index.html', system_time=system_time)
+    return render_template('index.html', system_time=system_time, hostname=hostname)
 
 
 @app.route('/storage')
