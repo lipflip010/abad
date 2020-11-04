@@ -1,0 +1,12 @@
+---
+- name: Deploying Development Updates
+  hosts: develop-server
+  become: yes
+  tasks:
+    - name: Updating Repository
+      git:
+        repo: https://github.com/lipflip010/abad.git
+        dest: /var/www/abad
+        force: yes
+        version: prod
+        accept_hostkey: yes
