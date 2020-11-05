@@ -10,3 +10,10 @@
         force: yes
         version: develop
         accept_hostkey: yes
+      notify: Reloading abad
+
+    - name: Reloading abad
+      systemd:
+        name: abad
+        state: reloaded
+        enabled: yes

@@ -8,6 +8,7 @@ Group=www-data
 WorkingDirectory=/var/www/abad
 Environment="PATH=/bin:/var/www/abad/env/bin"
 ExecStart=/var/www/abad/env/bin/gunicorn --workers 2 --bind 0.0.0.0:{{server_port}} -m 007 wsgi:app
+ExecReload=ps aux | grep gunicorn | grep wsgi:app|awk '{ print $2 }' | xargs kill -HUP
 
 [Install]
 WantedBy=multi-user.target
