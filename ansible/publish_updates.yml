@@ -10,3 +10,11 @@
         force: yes
         version: develop
         accept_hostkey: yes
+      notify: Restarting abad
+
+    - name: Restarting abad
+      systemd:
+        name: abad
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
