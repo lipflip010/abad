@@ -8,5 +8,5 @@
         repo: https://github.com/lipflip010/abad.git
         dest: /var/www/abad
         force: yes
-        version: prod
+        version: develop
         accept_hostkey: yes

@@ -5,6 +5,7 @@ import socket
 from time import strftime, tzname
 
 app = Flask(__name__)
+hostname = socket.gethostname()
 
 
 def run(command):
@@ -14,7 +15,6 @@ def run(command):
 
 @app.route('/')
 def index():
-    hostname = socket.gethostname()
     system_time = strftime("%H:%M:%S") + " (" + tzname[0] + ")"
     return render_template('index.html', system_time=system_time, hostname=hostname)
 
@@ -27,7 +27,7 @@ def storage():
 
 @app.route('/commands')
 def commands():
-    return render_template('commands.html')
+    return render_template('commands.html', hostname=hostname)
 
 
 @app.route('/commands/chkrootkit_logs')
