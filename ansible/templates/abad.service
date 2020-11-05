@@ -6,7 +6,7 @@ After=network.target
 User=root
 Group=www-data
 WorkingDirectory=/var/www/abad
-Environment="PATH=/sbin/shutdown:/bin:/var/www/abad/env/bin"
+Environment="PATH=/sbin/:/bin:/var/www/abad/env/bin"
 ExecStart=/var/www/abad/env/bin/gunicorn --workers 2 --bind 0.0.0.0:{{server_port}} -m 007 wsgi:app
 
 [Install]
