@@ -1,0 +1,5 @@
+[prod-server]
+normandy
+
+[develop-server]
+tardis ansible_sudo_password=t3nd3rgr3yh0und
