@@ -1,6 +1,5 @@
-.idea/**
-.idea/abad.iml
-.idea/misc.xml
+.idea
+!.idea/runConfigurations/Flask__app_py_.xml
 __pycache__
 env
 ansible/*.retry
