@@ -1,3 +1,6 @@
+.idea/**
+.idea/abad.iml
+.idea/misc.xml
 __pycache__
 env
-ansible/site.retry
+ansible/*.retry
