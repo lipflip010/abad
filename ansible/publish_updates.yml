@@ -1,6 +1,6 @@
 ---
-- name: Deploying Development Updates
-  hosts: develop-server
+- name: "Deploying Updates to {{ server }}-server"
+  hosts: "{{ server }}-server"
   become: yes
   tasks:
     - name: Updating Repository
