@@ -3,6 +3,7 @@ import subprocess as sp
 import os
 import socket
 from time import strftime, tzname
+import shutil
 
 app = Flask(__name__)
 hostname = socket.gethostname()
@@ -24,8 +25,15 @@ def index():
 
 @app.route('/storage')
 def storage():
-    ls = run(['du', '-hcs /home/philipp/Cloud'])
-    return render_template('storage.html', ls=ls)
+    total, used, free = shutil.disk_usage("/")
+
+    data = {"total": to_gib(total), "used": to_gib(used), "free": to_gib(free)}
+
+    return render_template('storage.html', hostname=hostname, data=data)
+
+
+def to_gib(number):
+    return number // (2 ** 30)
 
 
 @app.route('/commands')
