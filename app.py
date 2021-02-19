@@ -25,9 +25,12 @@ def index():
 
 @app.route('/storage')
 def storage():
-    total, used, free = shutil.disk_usage("/")
+    total, used, main_free = shutil.disk_usage("/")
+    data = {"main": to_gib(main_free)}
 
-    data = {"total": to_gib(total), "used": to_gib(used), "free": to_gib(free)}
+    if os.path.exists("/media/USBdrive"):
+        total1, used1, usbdrive_free = shutil.disk_usage("/media/USBdrive")
+        data["usbdrive"] = to_gib(usbdrive_free)
 
     return render_template('storage.html', hostname=hostname, data=data)
 

@@ -10,7 +10,9 @@
         </p>
     </div>
       <div class="container">
-          Output: On "/" {{ data["free"] }} GiB are left.
+          Output:
+          On the root media {{ data["main"] }} GiB
+          and on the USB-Drive {{ data["usbdrive"] }} GiB are left.
       </div>
   </section>
 {% endblock %}
