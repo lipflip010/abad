@@ -10,6 +10,12 @@
         force: yes
         version: develop
         accept_hostkey: yes
+    - name: Copying Systemd Service File to Server
+      template:
+        src: templates/abad.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
     - name: Restarting abad
       systemd:
         name: abad
