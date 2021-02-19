@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>abad: {{ hostname }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    {% endblock %}
+</head>
+<body>
+{% block menu %}
+<section class="section">
+    <div class="container">
+        <h2 class="title">Overview </h2>
+        <a href="/" class="button is-link">Home</a>
+        <a class="button is-link">Temperature</a>
+        <a href="/storage" class="button is-link">Storage</a>
+        <a class="button is-link">Performance</a>
+        <a href="/commands" class="button is-link">Commands</a>
+    </div>
+</section>
+{% endblock %}
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
