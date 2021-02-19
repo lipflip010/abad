@@ -3,6 +3,9 @@
   hosts: "{{ server }}-server"
   become: yes
   tasks:
+    - name: Testing variables
+      debug:
+        msg: "server_port: {{ server_port }}"
     - name: Updating Repository
       git:
         repo: https://github.com/lipflip010/abad.git
