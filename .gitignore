@@ -1,3 +1,5 @@
+.idea
+!.idea/runConfigurations/Flask__app_py_.xml
 __pycache__
 env
-ansible/site.retry
+ansible/*.retry
