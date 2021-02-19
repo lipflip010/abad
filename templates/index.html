@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Welcome Onboard!
-        </h1>
-        <p class="subtitle">
-            <strong>{{ hostname }}:</strong> It is {{ system_time }} and I've been running for {{ uptime }}.
-        </p>
-    </div>
-</section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Welcome Onboard!
+            </h1>
+            <p class="subtitle">
+                <strong>{{ hostname }}:</strong> It is {{ system_time }} and I've been running for {{ uptime }}.
+            </p>
+        </div>
+    </section>
 {% endblock %}

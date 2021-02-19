@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Result
-        </h1>
-        <p class="subtitle">
-            <strong>Normandy:</strong> Running command: {{ command }}
-        </p>
-    </div>
-    <div class="container">
-
-        <p> {{ stdout }} </p>
-    </div>
-</section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Result
+            </h1>
+            <p class="subtitle">
+                <strong>Normandy:</strong> Running command: {{ command }}
+            </p>
+        </div>
+        <div class="container">
+            <p> {{ stdout }} </p>
+        </div>
+    </section>
 {% endblock %}

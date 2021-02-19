@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Commands
-        </h1>
-        <p class="subtitle">
-            <strong>{{ hostname }}:</strong> what can I do for you?
-        </p>
-    </div>
-    <div class="container">
-        <a href="/commands/chkrootkit_logs" class="button is-link">Retain today's chkrootkit logs as expected</a>
-        <p> {{ display_text }} </p>
-    </div>
-</section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Commands
+            </h1>
+            <p class="subtitle">
+                <strong>{{ hostname }}:</strong> what can I do for you?
+            </p>
+            <a href="/commands/chkrootkit_logs" class="button is-link">Retain today's chkrootkit logs as
+                expected</a>
+        </div>
+    </section>
 {% endblock %}

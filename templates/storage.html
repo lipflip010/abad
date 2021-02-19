@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Storage
-      </h1>
-      <p class="subtitle">
-        any space left?
-        </p>
-    </div>
-      <div class="container">
-          Output:
-          On the root media <strong>{{ data["main"] }} GiB</strong>
-          and on the USB-Drive <strong>{{ data["usbdrive"] }} GiB</strong>  are left.
-      </div>
-  </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Storage
+            </h1>
+            <p class="subtitle">
+                any space left?
+            </p>
+            <p class="subtitle">
+                Output:
+                On the root media is <strong>{{ data["main"] }} GiB</strong> of free space
+                and on the USB-Drive <strong>{{ data["usbdrive"] }} GiB</strong>.
+            </p>
+        </div>
+    </section>
 {% endblock %}

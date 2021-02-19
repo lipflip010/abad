@@ -17,7 +17,7 @@ def run(command):
 @app.route('/')
 def index():
     uptime = run(['uptime', '-p'])
-    uptime = uptime[3:]
+    uptime = uptime[3:-1]
 
     system_time = strftime("%H:%M:%S") + " (" + tzname[0] + ")"
     return render_template('index.html', system_time=system_time, hostname=hostname, uptime=uptime)
