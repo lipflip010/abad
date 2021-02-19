@@ -1,6 +1,7 @@
 prod-server:
     hosts:
         normandy:
+            server_port: 8080
 develop-server:
     hosts:
         tardis:
