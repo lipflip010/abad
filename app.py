@@ -1,4 +1,7 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 import subprocess as sp
 import os
 import socket
@@ -6,12 +9,74 @@ from time import strftime, tzname
 import shutil
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+db = SQLAlchemy(app)
+
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
 hostname = socket.gethostname()
+
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+
+
+db.create_all()
+
+"""
+new_user = User(email="admin@palbers.de", password="pbkdf2:sha256:150000$tN0vzQhN$6ecb5bccea45be4f349caf081b4d50da440b53f7ea42193c40de7bf5bd58e39c")
+
+# add the new user to the database
+db.session.add(new_user)
+db.session.commit()
+"""
+
+@login_manager.user_loader
+def load_user(user_id):
+    # since the user_id is just the primary key of our user table, use it in the query for the user
+    return User.query.get(int(user_id))
 
 
 def run(command):
     output = sp.run(command, cwd=os.getcwd(), stdout=sp.PIPE)
     return output.stdout.decode('UTF-8')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+
+    user = User.query.filter_by(name=email).first()
+
+    # check if user actually exists
+    # take the user supplied password, hash it, and compare it to the hashed password in database
+    if not user or not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('login'))  # if user doesn't exist or password is wrong, reload the page
+
+    # if the above check passes, then we know the user has the right credentials
+    login_user(user, remember=remember)
+    return redirect(url_for('storage'))
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 @app.route('/')
@@ -40,11 +105,13 @@ def to_gib(number):
 
 
 @app.route('/commands')
+@login_required
 def commands():
     return render_template('commands.html', hostname=hostname)
 
 
 @app.route('/commands/chkrootkit_logs')
+@login_required
 def chkrootkit_logs():
     command = ['cp', '-afv', '/var/log/chkrootkit/log.today', '/var/log/chkrootkit/log.expected']
     stdout = run(command)
