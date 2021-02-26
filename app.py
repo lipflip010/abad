@@ -7,27 +7,20 @@ import os
 import socket
 from time import strftime, tzname
 import shutil
+from models import db, User
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-db = SQLAlchemy(app)
+
+db.init_app(app)
 
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 
 hostname = socket.gethostname()
-
-
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-
-
-db.create_all()
 
 """
 new_user = User(email="admin@palbers.de", password="pbkdf2:sha256:150000$tN0vzQhN$6ecb5bccea45be4f349caf081b4d50da440b53f7ea42193c40de7bf5bd58e39c")
@@ -36,6 +29,7 @@ new_user = User(email="admin@palbers.de", password="pbkdf2:sha256:150000$tN0vzQh
 db.session.add(new_user)
 db.session.commit()
 """
+
 
 @login_manager.user_loader
 def load_user(user_id):
