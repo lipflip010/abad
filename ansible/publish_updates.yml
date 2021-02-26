@@ -11,8 +11,13 @@
         repo: https://github.com/lipflip010/abad.git
         dest: /var/www/abad
         force: yes
-        version: develop
+        version: feature/authentication
         accept_hostkey: yes
+    - name: Updating python dependencies
+      pip:
+        requirements: /var/www/abad/requirements.txt
+        virtualenv: /var/www/abad/env
+        virtualenv_python: python3
     - name: Copying Systemd Service File to Server
       template:
         src: templates/abad.service
