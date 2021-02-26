@@ -1,8 +1,8 @@
-prod-server:
+production-server:
     hosts:
         normandy:
             server_port: 8080
-develop-server:
+development-server:
     hosts:
         tardis:
             ansible_sudo_password: t3nd3rgr3yh0und

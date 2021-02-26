@@ -2,7 +2,6 @@ import socket
 
 from flask import Flask
 from flask_login import LoginManager
-
 from models import db, User
 
 hostname = socket.gethostname()
@@ -11,7 +10,10 @@ hostname = socket.gethostname()
 def create_app():
     app = Flask(__name__)
 
-    app.config.from_object("config.DevelopmentConfig")
+    if app.config["ENV"] == "production":
+        app.config.from_object("instances.config.ProductionConfig")
+    else:
+        app.config.from_object("config.DevelopmentConfig")
 
     db.init_app(app)
 
