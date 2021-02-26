@@ -2,4 +2,5 @@
 .idea.bak
 __pycache__
 env
+instances
 ansible/*.retry

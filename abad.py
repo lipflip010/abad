@@ -10,10 +10,8 @@ hostname = socket.gethostname()
 
 def create_app():
     app = Flask(__name__)
-    # app.config.from_pyfile(config_file)
 
-    app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config.from_object("config.DevelopmentConfig")
 
     db.init_app(app)
 
@@ -34,6 +32,7 @@ def create_app():
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    print(app.config)
     return app
 
 
