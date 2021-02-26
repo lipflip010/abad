@@ -16,10 +16,18 @@
             <h2 class="title">Overview </h2>
             <div class="buttons">
                 <a href="/" class="button is-link">Home</a>
-                <a class="button is-link">Temperature</a>
                 <a href="/storage" class="button is-link">Storage</a>
-                <a class="button is-link">Performance</a>
                 <a href="/commands" class="button is-link">Commands</a>
+                {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.login') }}" class="button is-link">
+                        Login
+                    </a>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="button is-link">
+                    Logout
+                    </a>
+                {% endif %}
             </div>
         </div>
     </section>
