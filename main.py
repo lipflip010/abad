@@ -6,10 +6,15 @@ from time import strftime, tzname
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from abad import hostname
 from utils import run, to_gib
 
 main = Blueprint('main', __name__)
+
+
+@main.context_processor
+def get_current_user():
+    from abad import hostname
+    return {"hostname": hostname}
 
 
 @main.route('/')
@@ -18,7 +23,7 @@ def index():
     uptime = uptime[3:-1]
 
     system_time = strftime("%H:%M:%S") + " (" + tzname[0] + ")"
-    return render_template('index.html', system_time=system_time, hostname=hostname, uptime=uptime)
+    return render_template('index.html', system_time=system_time, uptime=uptime)
 
 
 @main.route('/storage')
@@ -30,13 +35,13 @@ def storage():
         total1, used1, usbdrive_free = shutil.disk_usage("/media/USBdrive")
         data["usbdrive"] = to_gib(usbdrive_free)
 
-    return render_template('storage.html', hostname=hostname, data=data)
+    return render_template('storage.html', data=data)
 
 
 @main.route('/commands')
 @login_required
 def commands():
-    return render_template('commands.html', hostname=hostname)
+    return render_template('commands.html')
 
 
 @main.route('/commands/chkrootkit_logs')

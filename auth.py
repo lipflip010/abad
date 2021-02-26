@@ -8,6 +8,12 @@ from models import User
 auth = Blueprint('auth', __name__)
 
 
+@auth.context_processor
+def get_current_user():
+    from abad import hostname
+    return {"hostname": hostname}
+
+
 @auth.route('/logout')
 @login_required
 def logout():
