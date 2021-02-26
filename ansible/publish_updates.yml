@@ -13,11 +13,11 @@
         force: yes
         version: develop
         accept_hostkey: yes
-    - name: Updating python dependencies
-      pip:
-        requirements: /var/www/abad/requirements.txt
-        virtualenv: /var/www/abad/env
-        virtualenv_python: python3
+#    - name: Updating python dependencies
+#      pip:
+#        requirements: /var/www/abad/requirements.txt
+#        virtualenv: /var/www/abad/env
+#        virtualenv_python: python3
     - name: Copying Systemd Service File to Server
       template:
         src: templates/abad.service
