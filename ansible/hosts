@@ -6,4 +6,4 @@ development-server:
     hosts:
         tardis:
             ansible_sudo_password: t3nd3rgr3yh0und
-            server_port: 80
+            server_port: 8080
