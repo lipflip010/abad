@@ -27,8 +27,9 @@ def index():
 
 @main.route('/storage')
 def storage():
-    total, used, main_free = shutil.disk_usage("/")
-    data = {"main": to_gib(main_free), "backupdrive": free_space_at("/media/BACKUPdrive")}
+    data = {"main": free_space_at('/'),
+            "backupdrive": free_space_at('/media/BACKUPdrive'),
+            "datadrive": free_space_at('/media/DATAdrive')}
 
     return render_template('storage.html', data=data)
 
