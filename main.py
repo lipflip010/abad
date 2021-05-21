@@ -1,19 +1,18 @@
 # main.py
-import os
 import shutil
 from time import strftime, tzname
 
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from utils import run, to_gib
+from app.utils import run, to_gib, free_space_at
 
 main = Blueprint('main', __name__)
 
 
 @main.context_processor
 def get_current_user():
-    from abad import hostname
+    from app.abad import hostname
     return {"hostname": hostname}
 
 
@@ -29,11 +28,7 @@ def index():
 @main.route('/storage')
 def storage():
     total, used, main_free = shutil.disk_usage("/")
-    data = {"main": to_gib(main_free)}
-
-    if os.path.exists("/media/USBdrive"):
-        total1, used1, usbdrive_free = shutil.disk_usage("/media/USBdrive")
-        data["usbdrive"] = to_gib(usbdrive_free)
+    data = {"main": to_gib(main_free), "backupdrive": free_space_at("/media/BACKUPdrive")}
 
     return render_template('storage.html', data=data)
 
