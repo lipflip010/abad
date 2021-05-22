@@ -1,18 +1,17 @@
 # main.py
-import shutil
 from time import strftime, tzname
 
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from app.utils import run, to_gib, free_space_at
+from utils import run, free_space_at
 
 main = Blueprint('main', __name__)
 
 
 @main.context_processor
 def get_current_user():
-    from app.abad import hostname
+    from abad import hostname
     return {"hostname": hostname}
 
 
