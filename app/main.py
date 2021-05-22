@@ -4,7 +4,7 @@ from time import strftime, tzname
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from utils import run, free_space_at
+from app.utils import run, free_space_at
 
 main = Blueprint('main', __name__)
 

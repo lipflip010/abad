@@ -2,7 +2,7 @@ import socket
 
 from flask import Flask
 from flask_login import LoginManager
-from models import db, User
+from app.models import db, User
 
 hostname = socket.gethostname()
 
@@ -27,11 +27,11 @@ def create_app():
         return User.query.get(int(user_id))
 
     # blueprint for auth parts of app
-    from auth import auth as auth_blueprint
+    from app.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
     # blueprint for non-auth parts of app
-    from main import main as main_blueprint
+    from app.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     return app
