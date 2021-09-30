@@ -1,0 +1,17 @@
+{
+  "name": "abad-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scss/mystyles.scss",
+  "scripts": {
+  "css-build": "node-sass --omit-source-map-url scss/styles.scss css/styles.css",
+  "css-watch": "npm run css-build -- --watch",
+  "start": "npm run css-watch"
+},
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bulma": "^0.9.3",
+    "node-sass": "^6.0.1"
+  }
+}

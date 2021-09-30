@@ -4,3 +4,5 @@ __pycache__
 env
 instances
 ansible/*.retry
+/static/node_modules/
+/static/package-lock.json
