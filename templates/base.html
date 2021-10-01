@@ -7,30 +7,47 @@
         <title>abad: {{ hostname }}</title>
         <link rel="stylesheet" href="/static/css/styles.css">
         <script defer src="/static/fontawesome.js"></script>
+        <script src="/static/js/main.js"></script>
     {% endblock %}
 </head>
 <body>
 {% block menu %}
-    <section class="section">
-        <div class="container">
-            <h2 class="title">Overview </h2>
-            <div class="buttons">
-                <a href="/" class="button is-primary">Home</a>
-                <a href="/storage" class="button is-primary">Storage</a>
-                <a href="/commands" class="button is-primary">Commands</a>
-                {% if not current_user.is_authenticated %}
-                    <a href="{{ url_for('auth.login') }}" class="button is-primary">
-                        Login
-                    </a>
-                {% endif %}
-                {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('auth.logout') }}" class="button is-primary">
-                    Logout
-                    </a>
-                {% endif %}
+    <nav class="navbar is-primary py-1 px-4" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand is-primary">
+
+            <a role="button" class="navbar-burger " aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu is-primary">
+            <div class="navbar-start">
+                <a href="/" class="navbar-item">Home</a>
+                <a href="/storage" class="navbar-item">Storage</a>
+                <a href="/commands" class="navbar-item">Commands</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.login') }}" class="button is-light">
+                                Login
+                            </a>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.logout') }}" class="button is-light">
+                                Logout
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </nav>
 {% endblock %}
 {% block content %}
 {% endblock %}
